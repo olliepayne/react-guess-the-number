@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 class Game extends React.Component {
   state = {
     randomNumber: 0,
-    guess: 0
+    guess: null,
+    gameOver: false
   }
 
   componentDidMount() {
     this.setState({
-      randomNumber: this.setRandomNumber
+      randomNumber: this.setRandomNumber()
     })
   }
 
@@ -16,27 +17,28 @@ class Game extends React.Component {
     return Math.floor(Math.random() * 100) + 1
   }
 
-  submitGuess = (num) => {
-    this.setState({
-      guess: num
-    })
-  }
-
   checkGuess = () => {
-    console.log(this.state.randomNumber)
-
-    const currentState = this.state;
-    if(currentState.guess < currentState.randomNumber) {
-      
+    const guess = document.getElementById('guess-input').value
+    if(guess === this.state.randomNumber) {
+      this.setState({
+        gameOver: true
+      })
     }
+
+    this.setState({
+      guess: guess
+    })
   }
 
   render() {
     return (
       <div id="game">
         <form id="guess-input-container" onSubmit={this.checkGuess}>
-          <input type="number" placeholder="Enter guess..." onChange={(e) => this.submitGuess(e.target.value)}/>
+          <input id="guess-input" type="number" min="0" max="100" placeholder="Enter guess..." />
           <button type="submit">Guess</button>
+          <p>{this.state.randomNumber}</p>
+          <p>{this.state.guess < this.state.randomNumber ? 'Too Low' : 'Too High'}</p>
+          <p>{this.state.gameOver ? 'Correct!' : 'Keep guessing !'}</p>
         </form>
       </div>
     )
