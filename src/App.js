@@ -16,12 +16,14 @@ const GuessInput = (props) => {
 }
 
 function App() {
+  const [gameOver, setGameOver] = useState(false)
   const [randomNum, setRandomNum] = useState(0)
   const [guess, setGuess] = useState(0)
 
   const checkGuess = (num) => {
-    console.log('Called: checkGuess')
-    console.log(`Guess: ${num}`)
+    if(num === randomNum) {
+      setGameOver(true)
+    }
 
     setGuess(num)
   }
@@ -38,7 +40,8 @@ function App() {
     <div id="app">
       <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
       <p>{randomNum}</p>
-      <p>{guess === randomNum ? 'Correct!' : 'Keep guessing!'}</p>
+      <p>{guess < randomNum && !gameOver ? 'Too low!' : 'Too high!'}</p>
+      <p>{gameOver ? 'Correct!' : 'Keep guessing!'}</p>
     </div>
   )
 }
