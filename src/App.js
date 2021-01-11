@@ -22,14 +22,8 @@ function App() {
   const [randomNum, setRandomNum] = useState(0)
   const [guess, setGuess] = useState(0)
 
-  const checkGuess = () => {
-    console.log(guess)
-
-    if(guess === randomNum) {
-      console.log('game over')
-    } else {
-      console.log('keep guessing')
-    }
+  const checkGuess = (num) => {
+    console.log('Called: checkGuess')
   }
   
   const init = () => {
