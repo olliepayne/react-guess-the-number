@@ -1,26 +1,49 @@
 import React, { useState, useEffect } from 'react'
+import './App.css'
+
+const GuessInput = (props) => {
+  const [guessInputVal, setGuessInputVal] = useState(0)
+
+  return (
+    <div id="guess-input-container">
+      <input type="number" placeholder="Enter guess..." onChange={(e) => setGuessInputVal(e.target.value)}/>
+      <button onClick={() => {
+        props.setGuess(guessInputVal)
+        props.checkGuess()
+      }}
+      >
+        Submit
+      </button>
+    </div>
+  )
+}
 
 function App() {
-  const [name, setName] = useState('mario')
-  const [age, setAge] = useState(30)
+  const [randomNum, setRandomNum] = useState(0)
+  const [guess, setGuess] = useState(0)
 
-  const changeName = () => {
-    setName('luigi')
+  const checkGuess = () => {
+    console.log(guess)
+
+    if(guess === randomNum) {
+      console.log('game over')
+    } else {
+      console.log('keep guessing')
+    }
   }
-
-  const changeAge = () => {
-    setAge(40)
+  
+  const init = () => {
+    setRandomNum(Math.floor(Math.random() * 100) + 1)
   }
 
   useEffect(() => {
-    console.log('use effect ran')
-  }, [name])
+    init()
+  }, [])
 
   return (
     <div id="app">
-      <p>Name: {name}, Age:{age}</p>
-      <button onClick={changeName}>Change name</button>
-      <button onClick={changeAge}>Change age</button>
+      <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
+      <p>{randomNum}</p>
     </div>
   )
 }
