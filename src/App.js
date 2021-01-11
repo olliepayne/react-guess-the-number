@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 
 const GuessInput = (props) => {
-  const [guessInputVal, setGuessInputVal] = useState(0)
-
   return (
     <div id="guess-input-container">
-      <input type="number" placeholder="Enter guess..." onChange={(e) => setGuessInputVal(e.target.value)}/>
+      <input id="guess-input" type="number" placeholder="Enter guess..."/>
       <button onClick={() => {
-        props.setGuess(guessInputVal)
-        props.checkGuess()
+        props.checkGuess(parseInt(document.getElementById('guess-input').value))
       }}
       >
         Submit
@@ -24,6 +21,9 @@ function App() {
 
   const checkGuess = (num) => {
     console.log('Called: checkGuess')
+    console.log(`Guess: ${num}`)
+
+    setGuess(num)
   }
   
   const init = () => {
@@ -38,6 +38,7 @@ function App() {
     <div id="app">
       <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
       <p>{randomNum}</p>
+      <p>{guess === randomNum ? 'Correct!' : 'Keep guessing!'}</p>
     </div>
   )
 }
