@@ -29,7 +29,7 @@ function App() {
   
       setGuess(num)
   
-      let guessArr = prevGuesses
+      let guessArr = prevGuesses.slice()
       guessArr.push(num)
       setPrevGuesses(guessArr)
     }
@@ -49,6 +49,11 @@ function App() {
       <p>Im thinking of a number between 1 and 100...</p>
       {prevGuesses.length > 0 ? <p>{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
       <p>{gameOver ? 'Correct! Woohoo!' : ''}</p>
+      <ul>
+        {prevGuesses.map((prevGuess, index) => (
+          <li key={index}>{prevGuess}</li>
+        ))}
+      </ul>
     </div>
   )
 }
