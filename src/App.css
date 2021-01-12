@@ -44,3 +44,20 @@
   opacity: 75%;
   cursor: pointer;
 }
+
+#reset-btn {
+  margin: 10px;
+  padding: 0 auto;
+  border-radius: 10px;
+  border: none;
+  background-color: salmon;
+  width: 80px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#reset-btn:hover {
+  opacity: 75%;
+  cursor: pointer;
+}

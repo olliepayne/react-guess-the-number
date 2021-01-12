@@ -48,7 +48,11 @@ function App() {
   }
   
   const init = () => {
+    setGameOver(false)
+
     setRandomNum(Math.floor(Math.random() * 100) + 1)
+    setGuess(0)
+    setPrevGuesses([])
   }
 
   useEffect(() => {
@@ -62,8 +66,8 @@ function App() {
       <div id="game-status-container">
         <p>I'm thinking of a number between 1 and 100...</p>
         {gameOver ? <p className="game-status-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
-      </div>
-      <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
+      </div>   
+      {gameOver ? <button id="reset-btn" onClick={init}>Reset</button> : <GuessInput setGuess={setGuess} checkGuess={checkGuess} />}
       <ul id="prev-guesses-list">
         {prevGuesses.map((prevGuess, index) => (
           <li key={index}>{prevGuess.num}, {prevGuess.status}</li>
