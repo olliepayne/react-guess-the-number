@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import Header from './Header'
+import Header from './components/Header/Header'
 
 const GuessInput = (props) => {
   return (
@@ -21,8 +21,6 @@ function App() {
   const [randomNum, setRandomNum] = useState(0)
   const [guess, setGuess] = useState(0)
   const [prevGuesses, setPrevGuesses] = useState([])
-
-  let prevGuessList
 
   const checkGuess = (num) => {
     if(num >= 0 && num <= 100) {
