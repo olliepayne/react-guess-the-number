@@ -3,8 +3,6 @@ import './App.css'
 import Header from './components/Header/Header'
 
 const GuessInput = (props) => {
-  const [placeholder, setPlaceholder] = useState('Enter guess...')
-
   return (
     <div id="guess-input-container">
       <input id="guess-input" type="number" placeholder="Enter guess..." min="0" max="100" />
@@ -62,7 +60,7 @@ function App() {
       <Header title="NUMBER GUESS"/>
       <br></br>
       <div id="game-status-container">
-        <p className="game-status-text">I'm thinking of a number between 1 and 100...</p>
+        <p>I'm thinking of a number between 1 and 100...</p>
         {gameOver ? <p className="game-status-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
       </div>
       <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
