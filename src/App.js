@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import Header from './Header'
 
 const GuessInput = (props) => {
   return (
     <div id="guess-input-container">
       <input id="guess-input" type="number" placeholder="Enter guess..." />
-      <button onClick={() => {
+      <button className="submit-btn" onClick={() => {
         props.checkGuess(parseInt(document.getElementById('guess-input').value))
       }}
       >
@@ -47,14 +48,17 @@ function App() {
 
   return (
     <div id="app">
+      <Header title="NUMBER GUESS"/>
       <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
-      <p>Im thinking of a number between 1 and 100...</p>
-      {gameOver ? <p>Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p>{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
-      <ul>
-        {prevGuesses.map((prevGuess, index) => (
-          <li key={index}>{prevGuess}</li>
-        ))}
-      </ul>
+      <div id="game-status-container">
+        <p className="game-status-text">Im thinking of a number between 1 and 100...</p>
+        {gameOver ? <p className="game-status-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
+      </div>
+      <ul id="prev-guesses-list">
+          {prevGuesses.map((prevGuess, index) => (
+            <li key={index}>{prevGuess}</li>
+          ))}
+        </ul>
     </div>
   )
 }
