@@ -49,7 +49,7 @@ function App() {
       <Header title="NUMBER GUESS"/>
       <br></br>
       <div id="game-status-container">
-        <p className="game-status-text">Im thinking of a number between 1 and 100...</p>
+        <p className="game-status-text">I'm thinking of a number between 1 and 100...</p>
         {gameOver ? <p className="game-status-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
       </div>
       <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
