@@ -3,11 +3,14 @@ import './App.css'
 import Header from './components/Header/Header'
 
 const GuessInput = (props) => {
+  const [placeholder, setPlaceholder] = useState('Enter guess...')
+
   return (
     <div id="guess-input-container">
       <input id="guess-input" type="number" placeholder="Enter guess..." min="0" max="100" />
       <button className="submit-btn" type="submit" onClick={() => {
         props.checkGuess(parseInt(document.getElementById('guess-input').value))
+        document.getElementById('guess-input').value = null
       }}
       >
         Submit
