@@ -24,6 +24,7 @@ function App() {
   const [prevGuesses, setPrevGuesses] = useState([])
 
   const checkGuess = (num) => {
+    console.log(randomNum)
     let guessStatus = 'High'
 
     if(num >= 0 && num <= 100) {
@@ -65,12 +66,12 @@ function App() {
       <br></br>
       <div id="game-status-container">
         <p>I'm thinking of a number between 1 and 100...</p>
-        {gameOver ? <p className="game-status-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
-      </div>   
-      {gameOver ? <button id="reset-btn" onClick={init}>Reset</button> : <GuessInput setGuess={setGuess} checkGuess={checkGuess} />}
+        {gameOver ? <p id="correct-guess-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
+      </div>
+      {gameOver ? <div id="reset-btn-container"><button id="reset-btn" onClick={init}>Reset</button></div> : <GuessInput checkGuess={checkGuess} />}
       <ul id="prev-guesses-list">
         {prevGuesses.map((prevGuess, index) => (
-          <li key={index}>{prevGuess.num}, {prevGuess.status}</li>
+          <li key={index} style={prevGuess.status === 'Correct!' ? {color: 'green'} : null }>{prevGuess.num}, {prevGuess.status}</li>
         ))}
       </ul>
     </div>
