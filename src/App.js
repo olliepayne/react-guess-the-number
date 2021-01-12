@@ -6,7 +6,7 @@ const GuessInput = (props) => {
   return (
     <div id="guess-input-container">
       <input id="guess-input" type="number" placeholder="Enter guess..." />
-      <button className="submit-btn" onClick={() => {
+      <button className="submit-btn" type="submit" onClick={() => {
         props.checkGuess(parseInt(document.getElementById('guess-input').value))
       }}
       >
@@ -47,11 +47,12 @@ function App() {
   return (
     <div id="app">
       <Header title="NUMBER GUESS"/>
-      <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
+      <br></br>
       <div id="game-status-container">
         <p className="game-status-text">Im thinking of a number between 1 and 100...</p>
         {gameOver ? <p className="game-status-text">Correct! Woohoo!</p> : prevGuesses.length > 0 ? <p className="game-status-text">{guess < randomNum ? 'Too Low!' : 'Too High!'}</p> : ''}
       </div>
+      <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
       <ul id="prev-guesses-list">
           {prevGuesses.map((prevGuess, index) => (
             <li key={index}>{prevGuess}</li>
