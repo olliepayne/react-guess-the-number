@@ -5,7 +5,7 @@ import Header from './components/Header/Header'
 const GuessInput = (props) => {
   return (
     <div id="guess-input-container">
-      <input id="guess-input" type="number" placeholder="Enter guess..." />
+      <input id="guess-input" type="number" placeholder="Enter guess..." min="0" max="100" />
       <button className="submit-btn" type="submit" onClick={() => {
         props.checkGuess(parseInt(document.getElementById('guess-input').value))
       }}
@@ -23,14 +23,24 @@ function App() {
   const [prevGuesses, setPrevGuesses] = useState([])
 
   const checkGuess = (num) => {
+    let guessStatus = 'High'
+
     if(num >= 0 && num <= 100) {
       if(num === randomNum) {
         setGameOver(true)
+        guessStatus = 'Correct!'
+      } else if(num < randomNum) {
+        guessStatus = 'Low'
       }
 
       let guessArr = prevGuesses.slice()
-      guessArr.unshift(num)
-
+      const newEntry= {
+        num: num,
+        status: guessStatus
+      }
+      guessArr.unshift(newEntry)
+      
+      // save the state
       setPrevGuesses(guessArr)
       setGuess(num)
     }
@@ -54,10 +64,10 @@ function App() {
       </div>
       <GuessInput setGuess={setGuess} checkGuess={checkGuess} />
       <ul id="prev-guesses-list">
-          {prevGuesses.map((prevGuess, index) => (
-            <li key={index}>{prevGuess}</li>
-          ))}
-        </ul>
+        {prevGuesses.map((prevGuess, index) => (
+          <li key={index}>{prevGuess.num}, {prevGuess.status}</li>
+        ))}
+      </ul>
     </div>
   )
 }
