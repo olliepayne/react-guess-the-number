@@ -30,7 +30,7 @@ function App() {
     if(num >= 0 && num <= 100) {
       if(num === randomNum) {
         setGameOver(true)
-        guessStatus = 'Correct!'
+        guessStatus = 'Correct'
       } else if(num < randomNum) {
         guessStatus = 'Low'
       }
@@ -71,7 +71,7 @@ function App() {
       {gameOver ? <div id="reset-btn-container"><button id="reset-btn" onClick={init}>Reset</button></div> : <GuessInput checkGuess={checkGuess} />}
       <ul id="prev-guesses-list">
         {prevGuesses.map((prevGuess, index) => (
-          <li key={index} style={prevGuess.status === 'Correct!' ? {color: 'green'} : null }>{prevGuess.num}, {prevGuess.status}</li>
+          <li key={index} style={prevGuess.status === 'Correct' ? {color: 'green'} : null }>{prevGuess.num}, {prevGuess.status}</li>
         ))}
       </ul>
     </div>

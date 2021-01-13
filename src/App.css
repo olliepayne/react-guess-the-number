@@ -31,6 +31,7 @@
 
 #correct-guess-text {
   color: green;
+  transform: scale(1.5);
 }
 
 .submit-btn {
@@ -62,9 +63,11 @@
   height: 40px;
   font-weight: bold;
   font-size: 18px;
+  transition: 0.1s;
 }
 
 #reset-btn:hover {
   opacity: 75%;
   cursor: pointer;
+  transform: scale(1.1);
 }
